@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nombre de contenedor:</strong>
+  <%= @container.get_name_container %>
+</p>
+
+<%= link_to 'Editar', edit_container_path(@container) %> |
+<%= link_to 'Atrás', containers_path %>

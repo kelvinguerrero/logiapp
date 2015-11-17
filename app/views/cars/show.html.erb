@@ -1,0 +1,42 @@
+<br>
+<% if notice %>
+    <div class="alert alert-info">
+      <p id="notice"><%= notice %></p>
+    </div>
+<% end %>
+<div class="row">
+    <div class="col-lg-4">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <i class="fa fa-truck"></i> Datos del carro
+        </div>
+        <!-- /.panel-heading -->
+        <div class="panel-body">
+          <div class="list-group">
+            <a href="#" class="list-group-item">
+              <i></i> <%= @car.get_plate_car %>
+              <span class="pull-right text-muted small"><em>Placa</em>
+                                            </span>
+            </a>
+            <a href="#" class="list-group-item">
+              <i></i> <%= @car.get_color_car %>
+              <span class="pull-right text-muted small"><em>Color</em>
+                                            </span>
+            </a>
+            <a href="#" class="list-group-item">
+              <i></i> <%= @car.get_model_car %>
+              <span class="pull-right text-muted small"><em>Modelo</em>
+                                            </span>
+            </a>
+          </div>
+        </div>
+        <!-- /.panel-body -->
+      </div>
+      <!-- /.panel -->
+    </div>
+</div>
+
+
+
+<%= link_to 'Edit', edit_car_path(@car) %> |
+<%= link_to 'Back', cars_path %>

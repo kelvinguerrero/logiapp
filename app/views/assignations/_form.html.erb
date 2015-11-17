@@ -1,0 +1,93 @@
+<%= form_for(@assignation) do |f| %>
+    <% if @assignation.errors.any? %>
+        <div class="panel panel-danger">
+          <div class="panel-heading">
+            <%= pluralize(@assignation.errors.count, "error") %> prohibe que esta asignación sea creada:
+          </div>
+          <div class="panel-body">
+            <ul>
+              <% @assignation.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+    <% end %>
+
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            Asignación
+          </div>
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-lg-6">
+                  <div class="form-group">
+                    <%= f.label :shipment %><br>
+                    <%= f.text_field :shipment, :class => 'form-control' %>
+                  </div>
+                  <div class="form-group">
+                    <%= f.label :quantity %><br>
+                    <%= f.number_field :quantity, :class => 'form-control' %>
+                  </div>
+                  <div class="form-group">
+                    <%= f.label :workOrder %><br>
+                    <%= f.text_field :workOrder, :class => 'form-control' %>
+                  </div>
+
+                  <div class="form-group">
+                    <%= f.label :price %><br>
+                    <%= f.text_field :price, data: {autonumeric: {aSign: '$', mDec: 0}}, :class => 'form-control' %>
+                  </div>
+                  <div class="form-group">
+                    <%= f.label :navies %><br>
+                    <%= f.collection_select :navy_id, Navy.order(:name), :id, :name,  {:prompt => 'Seleccione la naviera'}, :class => 'form-control' %>
+                  </div>
+              </div>
+              <div class="col-lg-6">
+
+                  <div class="form-group">
+                    <%= f.label :containers %><br>
+                    <%= f.collection_select :container_id, Container.order(:name), :id, :name,  {:prompt => 'Seleccione la naviera'}, :class => 'form-control' %>
+                  </div>
+                  <div class="form-group">
+                    <%= f.label :ways %><br>
+                    <%= f.collection_select :way_id, Way.order(:name), :id, :name,  {:prompt => 'Seleccione la naviera'}, :class => 'form-control' %>
+                  </div>
+
+                  <div class="form-group">
+                    <%= f.label :startDate %><br>
+                    <%= f.date_field :startDate, :class => 'form-control' %>
+                  </div>
+                  <div class="form-group">
+                    <%= f.label :endDate %><br>
+                    <%= f.date_field :endDate, :class => 'form-control' %>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <div class="actions">
+    <%= f.submit params[:action]=='edit' ? 'Editar asignación': 'Crear asignación', :class => 'btn btn-primary btn-sm'%>
+  </div>
+<% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

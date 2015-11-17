@@ -1,0 +1,2 @@
+module TypeMovementsHelper
+end

@@ -1,0 +1,39 @@
+<%= form_for(@logi_bill) do |f| %>
+  <% if @logi_bill.errors.any? %>
+    <div class="panel panel-danger">
+      <div class="panel-heading">
+        <%= pluralize(@logi_bill.errors.count, "error") %> prohibe crear esta cuenta:
+      </div>
+      <div class="panel-body">
+        <ul>
+          <% @logi_bill.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+  <% if @logi_bill.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@logi_bill.errors.count, "error") %> prohibited this logi_bill from being saved:</h2>
+
+      <ul>
+      <% @logi_bill.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :total %><br>
+    <%= f.text_field :total %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

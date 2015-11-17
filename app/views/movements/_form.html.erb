@@ -1,0 +1,135 @@
+  <% if @movement.errors.any? %>
+      <div class="panel panel-danger">
+        <div class="panel-heading">
+          <%= pluralize(@movement.errors.count, "error") %> prohibe crear este moviemiento:
+        </div>
+        <div class="panel-body">
+          <ul>
+            <% @movement.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+  <% end %>
+
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingOne">
+          <h4 class="panel-title">
+            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              Salida de caja negra
+            </a>
+          </h4>
+        </div>
+        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            <%= form_for(@movement) do |f| %>
+
+              <div class="row">
+              <div class="col-lg-12">
+                <div class="panel panel-default">
+                  <div class="panel-body">
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <input id="movement_type" name="movement_type[movement_type]" value="black_box_exit" type="hidden">
+                          <input id="movement_type_id" name="movement[type_movement_id]" value="<%= TypeMovement.find_by_name('Salida').id %>" type="hidden">
+
+
+                          <div class="form-group">
+                            <%= f.label 'Número de consecutivo de salida' %>
+                            <%= f.number_field :consecutiveNumber, class: 'form-control', :min => 1   %>
+                          </div>
+
+                          <div class="form-group">
+                            <%= f.label 'Fecha del movimiento' %><br>
+                            <%= f.date_field :movementDate, min:  Date.today , :class => 'form-control', value: Date.current %>
+                          </div>
+                          <div class="form-group">
+                            <%= f.label 'Concepto del movimiento' %><br>
+                            <%= f.text_area :concept, :class => 'form-control',:required => true   %>
+                          </div>
+                          <div class="form-group">
+                            <%= f.label 'Valor' %><br>
+                            <%= f.text_field :value, data: {autonumeric: {aSign: '$', mDec: 2}}, :class => 'form-control', :required => true   %>
+                          </div>
+
+                          <div class="actions">
+                            <%= f.submit 'Crear salida caja negra',class: 'btn btn-primary'%>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <%end%>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingTwo">
+          <h4 class="panel-title">
+            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              Entrada de caja negra
+            </a>
+          </h4>
+        </div>
+        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="panel panel-default">
+
+                  <div class="panel-body">
+                    <%= form_for(@movement) do |f| %>
+                        <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <input id="movement_type" name="movement_type[movement_type]" value="black_box_enter" type="hidden">
+                          <input id="movement_type_id" name="movement[type_movement_id]" value="<%= TypeMovement.find_by_name('Entrada').id %>" type="hidden">
+
+                          <div class="form-group">
+                            <%= f.label 'Número de consecutivo de la entrada'%>
+                            <%= f.number_field :consecutiveNumber, class: 'form-control', :min => 1   %>
+                          </div>
+                          <div class="form-group">
+                            <%= f.label 'Cuenta donde se retira el dinero' %><br>
+                            <%= f.collection_select :logi_bill_id, LogiBill.order(:name), :id, :name_bill,{:prompt => 'Seleccione la cuenta'}, {:required => true, :class=>'form-control'} %>
+                          </div>
+
+                          <div class="form-group">
+                            <%= f.label 'Fecha del movimiento' %><br>
+                            <%= f.date_field :movementDate, min:  Date.today , :class => 'form-control', value: Date.current %>
+                          </div>
+                          <div class="form-group">
+                            <%= f.label 'Concepto' %><br>
+                            <%= f.text_area :concept, :class => 'form-control', :required => true %>
+                          </div>
+                          <div class="form-group">
+                            <%= f.label 'Valor' %><br>
+                            <%= f.text_field :value, data: {autonumeric: {aSign: '$', mDec: 2}}, :class => 'form-control',:required => true   %>
+                          </div>
+
+                          <div class="actions">
+                            <%= f.submit 'Crear entrada caja negra',class: 'btn btn-primary'%>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+                    <%end%>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>

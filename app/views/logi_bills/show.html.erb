@@ -1,0 +1,57 @@
+<br>
+
+<% if notice %>
+    <div class="alert alert-danger alert-dismissable">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+      <p class="alert-link">Alerta!</p>
+      <p id="notice"><%= notice %></p>
+    </div>
+<% end %>
+
+<div class="row">
+  <div class="col-lg-9">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <div class="row">
+          <div class="col-lg-12">
+            Movimientos de la cuenta: <%= @logi_bill.name_bill %>
+          </div>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div class="dataTable_wrapper">
+          <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+            <thead>
+            <tr>
+              <th><small>No</small></th>
+              <th><small>Último</small></th>
+              <th><small>Movimiento anterior</small></th>
+              <th><small>valor</small></th>
+              <th><small>Total</small></th>
+              <th><small>Tipo movimiento</small></th>
+              <th colspan="2"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <% @logi_bill.get_bill_movement.each do |movement| %>
+                <tr>
+                  <td><small><%= movement.id%></small></td>
+                  <td><small><%= movement.get_last_change%></small></td>
+                  <td><small><%= movement.previous_bill_movement_id %></small></td>
+                  <td><small><%= number_to_currency movement.value %></small></td>
+                  <td><small><%= number_to_currency movement.total %></small></td>
+                  <td><small><%= movement.type_movement.name %></small></td>
+                  <td><small><%= link_to 'Editar', edit_bill_movement_path(movement) %></small></td>
+                  <td><small><%= link_to 'Eliminar', movement, method: :delete, data: { confirm: 'Are you sure?' } %></small></td>
+                </tr>
+            <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= link_to 'Editar', edit_logi_bill_path(@logi_bill) %> |
+<%= link_to 'Atrás', logi_bills_path %>

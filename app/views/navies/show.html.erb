@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nombre:</strong>
+  <%= @navy.get_name_navy %>
+</p>
+
+<%= link_to 'Editar', edit_navy_path(@navy) %> |
+<%= link_to 'Atrás', navies_path %>

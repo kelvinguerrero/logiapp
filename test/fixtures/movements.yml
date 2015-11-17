@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  movementDate: 2015-09-11
+  value: 9.99
+  concept: MyText
+
+two:
+  movementDate: 2015-09-11
+  value: 9.99
+  concept: MyText

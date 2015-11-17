@@ -1,0 +1,32 @@
+<%= form_for(@outflow) do |f| %>
+  <% if @outflow.errors.any? %>
+      <div class="panel panel-danger">
+        <div class="panel-heading">
+          <%= pluralize(@outflow.errors.count, "error") %> prohibe crear este flujo:
+        </div>
+        <div class="panel-body">
+          <ul>
+            <% @outflow.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :value %><br>
+    <%= f.text_field :value %>
+  </div>
+  <div class="field">
+    <%= f.label :flowDate %><br>
+    <%= f.date_select :flowDate %>
+  </div>
+  <div class="field">
+    <%= f.label :concept %><br>
+    <%= f.text_area :concept %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

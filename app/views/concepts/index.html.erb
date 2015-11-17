@@ -1,0 +1,48 @@
+<h2>Listado de conceptos</h2>
+<div class="row">
+  <div class="col-lg-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <div class="row">
+          <div class="col-lg-2">
+            Conceptos
+          </div>
+          <div class="col-lg-10 text-right">
+            <%= link_to 'Nuevo Concepto', new_concept_path %>
+          </div>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div class="dataTable_wrapper">
+          <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+            <thead>
+              <tr>
+                <th>Factura</th>
+                <th>Contenedor</th>
+                <th>Descripción</th>
+                <th>Ruta</th>
+                <th>Total</th>
+                <th colspan="3"></th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <% @concepts.each do |concept| %>
+                <tr>
+                  <td><%= concept.get_invoice_id %></td>
+                  <td><%= concept.get_container %></td>
+                  <td><%= concept.get_description %></td>
+                  <td><%= concept.get_route %></td>
+                  <td><%= concept.get_total %></td>
+                  <td><%= link_to 'Ver', concept %></td>
+                  <td><%= link_to 'Editar', edit_concept_path(concept) %></td>
+                  <td><%= link_to 'Eliminar', concept, method: :delete, data: { confirm: '¿Quiere eliminar el concepto?' } %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

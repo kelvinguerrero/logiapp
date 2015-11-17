@@ -1,0 +1,90 @@
+<%= form_for(@invoice) do |f| %>
+  <% if @invoice.errors.any? %>
+    <div class="panel panel-danger">
+      <div class="panel-heading">
+        <%= pluralize(@invoice.errors.count, "error") %> prohibe crear este conductor:
+      </div>
+      <div class="panel-body">
+        <ul>
+          <% @invoice.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <%= "Factura - Work Order: #{@invoice.workorder}" %>
+          </div>
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <%= f.label 'Cantidad' %><br>
+                  <%= f.number_field :quantity, :class => 'form-control'  %>
+                </div>
+
+                <div class="form-group">
+                    <%= f.label 'Subtotal' %><br>
+                    <%= f.text_field :subtotal, data: {autonumeric: {aSign: '$', mDec: 2}}, :class => 'form-control' %>
+                </div>
+                <div class="form-group">
+                    <%= f.label 'iva' %><br>
+                    <%= f.text_field :iva, data: {autonumeric: {aSign: '$', mDec: 2}}, :class => 'form-control' %>
+                </div>
+                <div class="form-group">
+                    <%= f.label 'retefuente' %><br>
+                    <%= f.text_field :retefuente, data: {autonumeric: {aSign: '$', mDec: 2}}, :class => 'form-control' %>
+                </div>
+                <div class="form-group">
+                    <%= f.label 'reteica' %><br>
+                    <%= f.text_field :reteica, data: {autonumeric: {aSign: '$', mDec: 2}}, :class => 'form-control' %>
+                </div>
+                <div class="form-group">
+                  <%= f.label 'Total' %><br>
+                  <%= f.text_field :total, data: {autonumeric: {aSign: '$', mDec: 2}}, :class => 'form-control' %>
+                </div>
+
+              </div>
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <%= f.label 'Id contable' %><br>
+                  <%= f.number_field :idcontable, :class => 'form-control'  %>
+                </div>
+                <div class="form-group">
+                  <%= f.label 'Fecha de vencimiento' %><br>
+                  <%= f.date_field :expirationDate, :class => 'form-control'  %>
+                </div>
+                <div class="form-group">
+                  <%= f.label 'Fecha de elavoración' %><br>
+                  <%= f.date_field :elaborationDate, :class => 'form-control'  %>
+                </div>
+                <div class="form-group">
+                  <%= f.label 'Fecha de arradicación' %><br>
+                  <%= f.date_field :eradicateDate, :class => 'form-control'  %>
+                </div>
+                <div class="form-group">
+                  <%= f.label 'Pagada' %><br>
+                  <%= f.check_box :paid, :class => 'checkbox' %>
+                </div>
+
+
+              </div>
+
+            </div>
+                <%= f.fields_for :concepts do |builder| %>
+                    <%= render 'concept_partial', f: builder %>
+                <% end %>
+                <%= link_to_add_fields "Add concept", f, :concepts %>
+          </div>
+          <div class="panel-footer">
+            <%= f.submit params[:action]=='edit' ? 'Editar factura': 'Crear factura', :class => 'btn btn-primary btn-sm'%>
+          </div>
+        </div>
+      </div>
+    </div>
+<% end %>

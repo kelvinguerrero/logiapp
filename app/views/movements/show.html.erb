@@ -1,0 +1,54 @@
+<br>
+
+<% if notice %>
+    <div class="alert alert-danger alert-dismissable">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+      <p class="alert-link">Alerta!</p>
+      <p id="notice"><%= notice %></p>
+    </div>
+<% end %>
+
+<div class="row">
+
+  <!-- /.col-lg-4 -->
+  <div class="col-lg-4 col-lg-offset-4">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        Movimiento: <%= @movement.id %>
+      </div>
+      <div class="panel-body">
+        <p>
+          <strong>Movementdate:</strong>
+          <%= @movement.get_movement_date %>
+        </p>
+
+        <p>
+          <strong>Value:</strong>
+          <%= @movement.get_value %>
+        </p>
+
+        <p>
+          <strong>Concept:</strong>
+          <%= @movement.get_concept %>
+        </p>
+
+        <p>
+          <strong>Cuenta:</strong>
+          <%= @movement.get_logi_bill %>
+        </p>
+        <p>
+          <strong>Tipo de transacción:</strong>
+          <%= @movement.get_type_transaction %>
+        </p>
+      </div>
+      <div class="panel-footer">
+        Numero de consecutivo: <%= @movement.get_consecutive_number %>
+      </div>
+    </div>
+  </div>
+  <!-- /.col-lg-4 -->
+</div>
+
+
+<%= link_to 'Editar', edit_movement_path(@movement) %> |
+<%= link_to 'Atrás', movements_path %>

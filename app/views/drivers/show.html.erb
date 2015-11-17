@@ -1,0 +1,151 @@
+<br>
+<% if notice %>
+    <div class="alert alert-info">
+      <p id="notice"><%= notice %></p>
+    </div>
+<% end %>
+<div class="row">
+      <div class="col-lg-8">
+          <% if @driver.get_black_list_driver %>
+            <div class="panel panel-danger">
+          <% else %>
+            <div class="panel panel-default">
+          <% end %>
+                <div class="panel-heading">
+                  <div class="row">
+                    <div class="col-lg-6">
+                        Despachos del conductor <%= @driver.get_name_driver %>
+                    </div>
+
+                    <div class="col-lg-6 text-right">
+                        <%= link_to 'Edit', edit_driver_path(@driver) %> |
+                        <%= link_to 'Back', drivers_path %>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            <div class="panel-body">
+              <div class="dataTable_wrapper">
+                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                  <thead>
+                  <tr>
+                    <th>Id Despacho</th>
+                    <th>Fecha de cargue</th>
+                    <th>Placa de carro</th>
+                    <th>Fecha de entrega</th>
+                    <th colspan="3"></th>
+                  </tr>
+                  </thead>
+
+                  <tbody>
+                  <% @driver.dispatches.each do |dispatch| %>
+                      <tr <%= status_assignation dispatch %>>
+                        <td><%= dispatch.id%></td>
+                        <td><%= dispatch.get_cargue_date %></td>
+                        <td><%= dispatch.get_car_plate %></td>
+                        <td><%= dispatch.get_cargue_date %></td>
+                        <td><%= link_to 'Mostrar', dispatch %></td>
+                      </tr>
+                  <% end %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+      </div>
+
+      <div class="col-lg-4">
+        <% if @driver.get_black_list_driver %>
+            <div class="panel panel-danger">
+        <% else %>
+            <div class="panel panel-default">
+        <% end %>
+          <div class="panel-heading">
+            <% if @driver.get_black_list_driver %>
+                <i class="fa fa-frown-o fa-fw"></i> Datos del conductor
+            <% else %>
+                <i class="fa fa-smile-o fa-fw"></i> Datos del conductor
+            <% end %>
+          </div>
+          <!-- /.panel-heading -->
+          <div class="panel-body">
+            <div class="list-group">
+              <a href="#" class="list-group-item" style="background-color: <%= @driver.busy ? '#a94442' : '#3c763d' %>; color: #f5f5f5">
+                <i></i> <%= @driver.get_busy_driver ? 'Ocupado' : 'Libre' %>
+                                        <span class="pull-right small" style="color: #f5f5f5"><em>Estado</em>
+                                        </span>
+              </a>
+              <a href="#" class="list-group-item">
+                <i></i> <%= @driver.get_name_driver %>
+                                        <span class="pull-right text-muted small"><em>Nombres</em>
+                                        </span>
+              </a>
+              <a href="#" class="list-group-item">
+                <i></i> <%= @driver.get_last_name_driver %>
+                                        <span class="pull-right text-muted small"><em>Apellidos</em>
+                                        </span>
+              </a>
+              <a href="#" class="list-group-item">
+                <i class="fa fa-mobile-phone"></i> <%= @driver.get_cell_phone_driver %>
+                                        <span class="pull-right text-muted small"><em>Celular</em>
+                                        </span>
+              </a>
+              <a href="#" class="list-group-item">
+                <i class="fa fa-credit-card "></i> <%= @driver.get_document_driver %>
+                                        <span class="pull-right text-muted small"><em>Cedula</em>
+                                        </span>
+              </a>
+
+              <a href="#" class="list-group-item">
+                <i class="fa fa-road "></i> <%= @driver.dispatches.count %>
+                <span class="pull-right text-muted small"><em>Total de despachos</em>
+                                        </span>
+              </a>
+            </div>
+            <!-- /.list-group-->
+            <% if @driver.get_black_list_driver %>
+                <div class="alert alert-danger">
+                  <strong>BLACK LIST</strong>
+                  <br>
+                  <%= @driver.get_black_list_comment_driver%>
+                </div>
+            <% end %>
+          </div>
+          <!-- /.panel-body -->
+        </div>
+        <!-- /.panel -->
+        <% if @driver.car %>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <i class="fa fa-truck"></i> Datos del carro
+              </div>
+              <!-- /.panel-heading -->
+              <div class="panel-body">
+                <div class="list-group">
+                  <a href="#" class="list-group-item">
+                    <i></i> <%= @driver.car.get_plate_car %>
+                    <span class="pull-right text-muted small"><em>Placa</em>
+                                            </span>
+                  </a>
+                  <a href="#" class="list-group-item">
+                    <i></i> <%= @driver.car.get_model_car %>
+                    <span class="pull-right text-muted small"><em>Modelo</em>
+                                            </span>
+                  </a>
+                  <a href="#" class="list-group-item">
+                    <i class="fa fa-mobile-phone"></i> <%= @driver.car.get_color_car%>
+                    <span class="pull-right text-muted small"><em>Color</em>
+                                            </span>
+                  </a>
+                </div>
+                <!-- /.list-group-->
+
+              </div>
+              <!-- /.panel-body -->
+            </div>
+        <% end %>
+        <!-- /.panel -->
+      </div>
+</div>
+
+

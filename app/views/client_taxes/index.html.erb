@@ -1,0 +1,31 @@
+<h1>Listing client_taxes</h1>
+
+<table class="table table-striped table-bordered table-hover" id="dataTables-example">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Iva</th>
+      <th>Reteica</th>
+      <th>Retefuente</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @client_taxes.each do |client_tax| %>
+      <tr>
+        <td><%= client_tax.get_name_client_tax %></td>
+        <td><%= client_tax.get_iva_client_tax %></td>
+        <td><%= client_tax.get_reteica_client_tax %></td>
+        <td><%= client_tax.get_retefuente_client_tax %></td>
+        <td><%= link_to 'Show', client_tax %></td>
+        <td><%= link_to 'Edit', edit_client_tax_path(client_tax) %></td>
+        <td><%= link_to 'Destroy', client_tax, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Client tax', new_client_tax_path %>

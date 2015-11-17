@@ -1,0 +1,38 @@
+<h1>Listado de rutas</h1>
+
+<div class="row">
+  <div class="col-lg-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        Rutas
+      </div>
+      <div class="panel-body">
+        <div class="dataTable_wrapper">
+          <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th colspan="3"></th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <% @ways.each do |way| %>
+                  <tr>
+                    <td><%= way.name %></td>
+                    <td><%= link_to 'Show', way %></td>
+                    <td><%= link_to 'Edit', edit_way_path(way) %></td>
+                    <td><%= link_to 'Destroy', way, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br>
+
+<%= link_to 'New Way', new_way_path %>

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  shipment: MyString
+  quantity: 1
+  workorder: MyString
+  startdate: 2015-09-07
+  enddate: 2015-09-07
+
+two:
+  shipment: MyString
+  quantity: 1
+  workorder: MyString
+  startdate: 2015-09-07
+  enddate: 2015-09-07

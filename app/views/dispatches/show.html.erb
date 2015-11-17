@@ -1,0 +1,254 @@
+<br>
+<% if notice %>
+    <div class="alert alert-info alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <p class="alert-link">Alerta!</p>
+        <p id="notice"><%= notice %></p>
+    </div>
+<% end %>
+
+<%= link_to 'Editar', edit_dispatch_path(@dispatch) %>
+
+<div class="row">
+
+  <div class="col-lg-8">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <i></i> Depacho # <%= @dispatch.id %>
+      </div>
+      <!-- /.panel-heading -->
+      <div class="panel-body">
+        <div class="list-group">
+          <a href="#" class="list-group-item">
+            <i></i> <%= @dispatch.get_assignation_way %>
+            <span class="pull-right text-muted small"><em>Ruta</em>
+                                        </span>
+          </a>
+          <a href="#" class="list-group-item">
+            <i></i> <%= @dispatch.assignation.container.name %>
+            <span class="pull-right text-muted small"><em>Tipo Contenedor</em>
+                                        </span>
+          </a>
+          <a href="#" class="list-group-item">
+            <i></i><%= @dispatch.get_container_number %>
+            <span class="pull-right text-muted small"><em>Número contenedor</em>
+                                        </span>
+          </a>
+          <a href="#" class="list-group-item">
+            <i></i><%= @dispatch.get_load_order %>
+            <span class="pull-right text-muted small"><em>Número orden de cargue</em>
+                                        </span>
+          </a>
+        </div>
+        <!-- /.list-group -->
+      </div>
+      <!-- /.panel-body -->
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <i></i> Información del flete
+      </div>
+      <!-- /.panel-heading -->
+      <div class="panel-body">
+        <div class="list-group">
+          <a href="#" class="list-group-item">
+            <i></i> <%= @dispatch.get_advance %>
+            <span class="pull-right text-muted small"><em>Anticipo</em>
+                                        </span>
+          </a>
+          <a href="#" class="list-group-item">
+            <i></i><%= @dispatch.get_balance %>
+            <span class="pull-right text-muted small"><em>Saldo</em>
+                                        </span>
+          </a>
+          <a href="#" class="list-group-item">
+            <i></i><%= @dispatch.get_balance + @dispatch.get_advance %>
+            <span class="pull-right text-muted small"><em>Total Flete</em>
+                                        </span>
+          </a>
+        </div>
+        <!-- /.list-group -->
+
+      </div>
+      <!-- /.panel-body -->
+    </div>
+
+  </div>
+  <div class="col-lg-4">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <i class="fa fa-calendar fa-fw"></i> Fechas del despacho
+      </div>
+      <!-- /.panel-heading -->
+      <div class="panel-body">
+        <div class="list-group">
+          <a href="#" class="list-group-item">
+            <i></i> <%= @dispatch.get_cargue_date %>
+            <span class="pull-right text-muted small"><em>Fecha de cargue</em>
+                                            </span>
+          </a>
+          <a href="#" class="list-group-item">
+            <i></i> <%= @dispatch.get_advance_date %>
+            <span class="pull-right text-muted small"><em>Fecha de pago de anticipo</em>
+                                            </span>
+          </a>
+          <a href="#" class="list-group-item">
+            <i></i> <%= @dispatch.get_download_date %>
+            <span class="pull-right text-muted small"><em>Fecha de descargue</em>
+                                            </span>
+          </a>
+          <a href="#" class="list-group-item">
+            <i></i> <%= @dispatch.get_payment_balance_date %>
+            <span class="pull-right text-muted small"><em>Fecha de pago de cumplido</em>
+                                            </span>
+          </a>
+        </div>
+        <!-- /.list-group-->
+      </div>
+      <!-- /.panel-body -->
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <i class="fa fa-smile-o fa-fw"></i> Datos del conductor
+      </div>
+      <!-- /.panel-heading -->
+      <div class="panel-body">
+        <div class="list-group">
+
+          <a href="#" class="list-group-item">
+            <i></i> <%= @dispatch.get_driver_name %>
+            <span class="pull-right text-muted small"><em>Nombres</em>
+                                            </span>
+          </a>
+          <a href="#" class="list-group-item">
+            <i></i> <%= @dispatch.get_driver_last_name %>
+            <span class="pull-right text-muted small"><em>Apellidos</em>
+                                            </span>
+          </a>
+          <a href="#" class="list-group-item">
+            <i class="fa fa-mobile-phone"></i> <%= @dispatch.get_driver_cellPhone %>
+            <span class="pull-right text-muted small"><em>Celular</em>
+                                            </span>
+          </a>
+          <a href="#" class="list-group-item">
+            <i class="fa fa-credit-card "></i> <%= @dispatch.get_driver_document %>
+            <span class="pull-right text-muted small"><em>Cedula</em>
+                                            </span>
+          </a>
+
+        </div>
+        <!-- /.list-group-->
+      </div>
+      <!-- /.panel-body -->
+    </div>
+    <!-- /.panel -->
+    <% if @dispatch.car %>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <i class="fa fa-truck"></i> Datos del carro
+          </div>
+          <!-- /.panel-heading -->
+          <div class="panel-body">
+            <div class="list-group">
+              <a href="#" class="list-group-item">
+                <i></i> <%= @dispatch.get_car_plate %>
+                <span class="pull-right text-muted small"><em>Placa</em>
+                                                </span>
+              </a>
+              <a href="#" class="list-group-item">
+                <i></i> <%= @dispatch.get_car_model %>
+                <span class="pull-right text-muted small"><em>Modelo</em>
+                                                </span>
+              </a>
+              <a href="#" class="list-group-item">
+                <i class="fa fa-mobile-phone"></i> <%= @dispatch.get_car_color%>
+                <span class="pull-right text-muted small"><em>Color</em>
+                                                </span>
+              </a>
+            </div>
+            <!-- /.list-group-->
+
+          </div>
+          <!-- /.panel-body -->
+        </div>
+    <% end %>
+    <!-- /.panel -->
+  </div>
+
+</div>
+
+<% content_for :dispatches_navigation_menu do %>
+    <ul class="nav" id="side-menu">
+
+      <div class="panel panel-default">
+        <div class="panel-heading text-center">
+          <strong class="text-primary"><%= @assignation.get_navy_name %></strong>
+          <br>
+          <%= link_to "Asignación:#{@assignation.id}", assignation_path(@assignation.id) %>
+
+        </div>
+        <div class="panel-body">
+          <div class="list-group">
+            <a href="#" class="list-group-item">
+              <i></i> <%= @assignation.get_shipment %>
+              <span class="pull-right text-muted small"><em>Shipment</em>
+                                                </span>
+            </a>
+            <a href="#" class="list-group-item">
+              <i></i> <%= @assignation.get_quantity %>
+              <span class="pull-right text-muted small"><em>Cantidad</em>
+                                                </span>
+            </a>
+            <a href="#" class="list-group-item">
+              <i></i> <%= @assignation.get_price %>
+              <span class="pull-right text-muted small"><em>Precio</em>
+                                                </span>
+            </a>
+            <a href="#" class="list-group-item">
+              <i></i> <%= @assignation.get_shipment %>
+              <span class="pull-right text-muted small"><em>Shipment</em>
+                                                </span>
+            </a>
+            <a href="#" class="list-group-item">
+              <i></i> <%= @assignation.get_startDate %>
+              <span class="pull-right text-muted small"><em>Fecha inicio</em>
+                                                </span>
+            </a>
+            <a href="#" class="list-group-item">
+              <i></i> <%= @assignation.get_endDate %>
+              <span class="pull-right text-muted small"><em>Fecha final</em>
+                                                </span>
+            </a>
+          </div>
+
+        </div>
+        <div class="panel-footer">
+          <div class="list-group">
+            <a href="#" class="list-group-item">
+              <i></i> <%= @assignation.get_container_name %>
+              <span class="pull-right text-muted small"><em>Tipo Contenedor</em>
+                                                </span>
+            </a>
+            <a href="#" class="list-group-item">
+              <i></i> <%= @assignation.dispatches.count  %>
+              <span class="pull-right text-muted small"><em>Entregados</em>
+                                                </span>
+            </a>
+            <a href="#" class="list-group-item">
+              <i></i> <%= @assignation.get_Remaining %>
+              <span class="pull-right text-muted small"><em>Faltantes</em>
+                                                </span>
+            </a>
+            <a href="#" class="list-group-item">
+              <i></i> <%= @assignation.get_workOrder %>
+              <span class="pull-right text-muted small"><em>Work Order</em>
+                                                </span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </ul>
+<% end %>
+

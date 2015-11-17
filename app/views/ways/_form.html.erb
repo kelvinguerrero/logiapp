@@ -1,0 +1,40 @@
+<%= form_for(@way) do |f| %>
+    <% if @way.errors.any? %>
+        <div class="panel panel-danger">
+          <div class="panel-heading">
+            <%= pluralize(@way.errors.count, "error") %> prohibe crear esta ruta:
+          </div>
+          <div class="panel-body">
+            <ul>
+              <% @way.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+    <% end %>
+
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            Ruta
+          </div>
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="form-group">
+                    <%= f.label 'Nombre de la ruta' %><br>
+                    <%= f.text_field :name, :class => 'form-control'  %>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="panel-footer">
+            <%= f.submit 'Crear ruta', :class => 'btn btn-primary btn-sm' %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<% end %>

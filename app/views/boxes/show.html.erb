@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @box.get_name_box %>
+</p>
+
+<p>
+  <strong>Value:</strong>
+  <%= number_to_currency @box.get_value_box_number %>
+</p>
+
+<p>
+  <strong>Total:</strong>
+  <%= number_to_currency @box.get_total_box_number %>
+</p>
+
+<p>
+  <strong>Incomedate:</strong>
+  <%= @box.get_incomeDate_box %>
+</p>
+
+<%= link_to 'Edit', edit_box_path(@box) %> |
+<%= link_to 'Back', boxes_path %>

@@ -1,0 +1,28 @@
+<%if not @errores.nil? %>
+    <% if @errores.errors.any? %>
+        <br>
+        <div class="panel panel-danger">
+          <div class="panel-heading">
+            <%= pluralize(@errores.errors.count, "error") %> No crea la factura sea creada:
+          </div>
+          <div class="panel-body">
+            <ul>
+              <% @errores.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+    <% end %>
+<% end %>
+<p id="notice"><%= notice %></p>
+
+<div class="row">
+  <% if @lits_invoices %>
+      <% @lits_invoices.each do |v_invoice| %>
+        <%= render 'pinvoice_show', invoice: v_invoice, pagar: false%>
+      <% end %>
+  <% end %>
+</div>
+
+<%= link_to 'Back', assignation_url(:id=>params[:p_assignation_id]) %>

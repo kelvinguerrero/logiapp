@@ -1,0 +1,43 @@
+<%= form_for(@parameter) do |f| %>
+  <% if @parameter.errors.any? %>
+      <div class="panel panel-danger">
+        <div class="panel-heading">
+          <%= pluralize(@parameter.errors.count, "error") %> prohibe crear estos parametros:
+        </div>
+        <div class="panel-body">
+          <ul>
+            <% @parameter.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+  <% end %>
+
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            Parametro
+          </div>
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="form-group">
+                    <%= f.label :name %><br>
+                    <%= f.text_field :name %>
+                </div>
+                <div class="field">
+                    <%= f.label :value %><br>
+                    <%= f.text_field :value %>
+                </div>
+                </div>
+              </div>
+            </div>
+          <div class="panel-footer">
+            <%= f.submit 'Crear parametro', :class => 'btn btn-primary btn-sm' %>
+          </div>
+          </div>
+        </div>
+      </div>
+<% end %>

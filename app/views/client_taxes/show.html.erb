@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nombre:</strong>
+  <%= @client_tax.get_name_client_tax %>
+</p>
+
+<p>
+  <strong>Iva:</strong>
+  <%= @client_tax.get_iva_client_tax %>
+</p>
+
+<p>
+  <strong>Reteica:</strong>
+  <%= @client_tax.get_reteica_client_tax %>
+</p>
+
+<p>
+  <strong>Retefuente:</strong>
+  <%= @client_tax.get_retefuente_client_tax %>
+</p>
+
+<%= link_to 'Edit', edit_client_tax_path(@client_tax) %> |
+<%= link_to 'Back', client_taxes_path %>

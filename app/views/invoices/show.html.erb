@@ -1,0 +1,234 @@
+<% if notice %>
+    <br>
+    <div class="alert alert-success alert-dismissable">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+      <%= notice %>
+    </div>
+<%end%>
+<br>
+<div class="row">
+  <div class="col-md-2">
+    <%= link_to 'Editar', edit_invoice_path(@invoice),{:class=>'btn btn-info'} %>
+    <%= link_to 'Atras', invoices_path,{:class=>'btn btn-info'} %>
+  </div>
+    <% if not @invoice.paid %>
+      <div class="col-md-2 col-md-offset-8">
+        <a href="#myModal" data-toggle="modal" data-target="#myModal" class="list-group-item text-center" style="background-color: #b7f2ac">
+          Pagar factura
+        </a>
+      </div>
+    <% else %>
+      <div class="col-md-4 col-md-offset-6">
+        <div class="alert alert-success">
+          Factura se encuntra paga. <a href="#" class="alert-link">Ver Movimiento</a>.
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+<br>
+<div class="row">
+  <div class="col-md-8">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <i></i> Conceptos de factura
+      </div>
+      <!-- /.panel-heading -->
+      <div class="panel-body">
+    <% @invoice.concepts.each do |concept| %>
+        <div class="list-group">
+
+          <a href="#" class="list-group-item">
+            <i></i> <%= concept.get_container %>
+            <span class="pull-right text-muted small"><em>No. Contenedor</em>
+                                            </span>
+          </a>
+
+          <a href="#" class="list-group-item">
+            <i></i> <%= concept.get_description %>
+            <span class="pull-right text-muted small"><em>Descripción</em>
+                                            </span>
+          </a>
+
+          <a href="#" class="list-group-item">
+            <i></i> <%= concept.get_route %>
+            <span class="pull-right text-muted small"><em>Ruta</em>
+                                            </span>
+          </a>
+
+          <a href="#" class="list-group-item">
+            <i></i> <%= concept.get_total_invoice %>
+            <span class="pull-right text-muted small"><em>Total Concepto</em>
+                                            </span>
+          </a>
+        </div>
+    <%end%>
+        <!-- /.list-group -->
+      </div>
+      <!-- /.panel-body -->
+    </div>
+  </div>
+
+  <div class="col-lg-4">
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <i class="fa fa-calendar fa-fw"></i> Fechas
+      </div>
+      <!-- /.panel-heading -->
+      <div class="panel-body">
+        <div class="list-group">
+
+          <a href="#" class="list-group-item">
+            <i></i> <%= @invoice.get_expiration_date_invoice %>
+            <span class="pull-right text-muted small"><em>Fecha vencimiento</em>
+                                        </span>
+          </a>
+
+          <a href="#" class="list-group-item">
+            <i></i> <%= @invoice.get_elaboration_date_invoice %>
+            <span class="pull-right text-muted small"><em>Fecha elavoración</em>
+                                        </span>
+          </a>
+
+          <a href="#" class="list-group-item">
+            <i></i> <%= @invoice.get_eradicateDate %>
+            <span class="pull-right text-muted small"><em>Fecha erradicacion</em>
+                                        </span>
+          </a>
+
+        </div>
+        <!-- /.list-group-->
+      </div>
+      <!-- /.panel-body -->
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <i></i> Factura  No <%= @invoice.get_idcontable_invoice %>
+      </div>
+      <!-- /.panel-heading -->
+      <div class="panel-body">
+        <div class="list-group">
+
+          <a href="#" class="list-group-item">
+            <i></i> <%= @invoice.get_quantity_invoice %>
+            <span class="pull-right text-muted small"><em>Cantidad Contenedores </em>
+                                        </span>
+          </a>
+
+          <a href="#" class="list-group-item">
+            <i></i> <%= @invoice.get_work_order_invoice %>
+            <span class="pull-right text-muted small"><em>Work Order</em>
+                                        </span>
+          </a>
+
+          <a href="#" class="list-group-item">
+            <i></i> <%= @invoice.get_iva_invoice %>
+            <span class="pull-right text-muted small"><em>Iva</em>
+                                        </span>
+          </a>
+
+          <a href="#" class="list-group-item">
+            <i></i> <%= @invoice.get_retefuente_invoice %>
+            <span class="pull-right text-muted small"><em>Retefuente</em>
+                                        </span>
+          </a>
+
+          <a href="#" class="list-group-item">
+            <i></i> <%= @invoice.get_reteica_invoice %>
+            <span class="pull-right text-muted small"><em>Rete Ica</em>
+                                        </span>
+          </a>
+
+          <a href="#" class="list-group-item">
+            <i></i> <%= @invoice.get_total_invoice %>
+            <span class="pull-right text-muted small"><em>Total</em>
+                                        </span>
+          </a>
+
+          <a href="#" class="list-group-item">
+            <i></i> <%= @invoice.get_subtotal_invoice %>
+            <span class="pull-right text-muted small"><em>Sub Total</em>
+                                        </span>
+          </a>
+
+        </div>
+        <!-- /.list-group -->
+      </div>
+      <!-- /.panel-body -->
+    </div>
+
+    <% if (not @invoice.assignation.nil?) and @invoice.client_tax %>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <i class="fa fa-globe fa-fw"></i> Naviera: <%= @invoice.client_tax.get_name_client_tax %>
+          </div>
+          <!-- /.panel-heading -->
+          <div class="panel-body">
+            <div class="list-group">
+
+              <a href="#" class="list-group-item">
+                <i></i> <%= @invoice.client_tax.get_iva_client_tax %>
+                <span class="pull-right text-muted small"><em>Iva</em>
+                                            </span>
+              </a>
+              <a href="#" class="list-group-item">
+                <i></i> <%= @invoice.client_tax.get_reteica_client_tax %>
+                <span class="pull-right text-muted small"><em>Rete Ica</em>
+                                            </span>
+              </a>
+              <a href="#" class="list-group-item">
+                <i></i> <%= @invoice.client_tax.get_retefuente_client_tax %>
+                <span class="pull-right text-muted small"><em>Rete Fuente</em>
+                                            </span>
+              </a>
+
+              <a href="#" class="list-group-item">
+                <i></i> <%= @invoice.client_tax.get_reteica_client_tax %>
+                <span class="pull-right text-muted small"><em>Rete Ica</em>
+                                            </span>
+              </a>
+
+            </div>
+            <!-- /.list-group-->
+          </div>
+          <!-- /.panel-body -->
+        </div>
+    <% end %>
+
+  </div>
+
+  <div class="col-lg-4">
+
+
+  </div>
+
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Generar Factura</h4>
+      </div>
+      <div class="modal-body">
+        <%= form_tag invoice_pay_path(@invoice), :method => "get" do %>
+
+          <div class="form-group">
+            <%= label_tag 'Cuenta donde ingresa el dinero' %><br>
+            <%= select_tag :logi_bill_id, options_for_select(LogiBill.order(:name).collect{ |u| [u.name_bill, u.id] }), :class=>'form-control'%>
+          </div>
+
+            <br>
+            <%= submit_tag 'Pagar factura factura', class: 'btn btn-success' %>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,81 @@
+<%= form_for(@driver) do |f| %>
+    <% if @driver.errors.any? %>
+      <div class="panel panel-danger">
+        <div class="panel-heading">
+          <%= pluralize(@driver.errors.count, "error") %> prohibe crear este conductor:
+        </div>
+        <div class="panel-body">
+          <ul>
+            <% @driver.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            Asignación
+          </div>
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="form-group">
+                    <%= f.label :name %><br>
+                    <%= f.text_field :name, :class => 'form-control' %>
+                </div>
+                <div class="form-group">
+                    <%= f.label :lastName %><br>
+                    <%= f.text_field :lastName, :class => 'form-control' %>
+                </div>
+                <div class="form-group">
+                    <%= f.label :document %><br>
+                    <%= f.text_field :document, :class => 'form-control' %>
+                </div>
+                <div class="form-group">
+                    <%= f.label :cellPhone %><br>
+                    <%= f.number_field :cellPhone, :class => 'form-control' %>
+                </div>
+                <div class="form-group">
+                    <%= f.label :cars %><br>
+                    <%= collection_select(:car, :id, Car.order(:plate), :id, :get_plate_car, {:selected => @driver.get_car_id_driver}, {:prompt => 'Seleccione la placa del carro', :class => 'form-control'}) %>
+                </div>
+                <div class="form-group">
+                      <%= f.label :blacklist %><br>
+                      <%= f.check_box :blacklist, :class => 'checkbox' %>
+                </div>
+                <div class="form-group">
+                      <%= f.label 'Comentaro de la lista negra' %><br>
+                      <%= f.text_area :blacklistComment, :class => 'form-control' %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel-footer">
+            <%= f.submit 'Crear conductor', :class => 'btn btn-primary btn-sm' %>
+        </div>
+      </div>
+    </div>
+  <br>
+<% end %>
+<script type="text/javascript">
+    $(document).ready(function () {
+        if ($("#driver_blacklist").is(":checked")) {
+            $("#driver_blacklistComment").prop("disabled", false);
+        } else {
+            $("#driver_blacklistComment").prop("disabled", true);
+        }
+
+        $("#driver_blacklist").click(function () {
+            if ($(this).is(":checked")) {
+                $("#driver_blacklistComment").prop("disabled", false);
+            } else {
+                $("#driver_blacklistComment").prop("disabled", true);
+            }
+        });
+    });
+</script>

@@ -1,0 +1,79 @@
+          <div class="col-lg-6">
+            <div class="panel panel-danger">
+              <div class="panel-heading">
+                <div class="row">
+                  <div class="col-lg-5 text-left">
+                    <strong>Factura</strong>
+                    <small><%= invoice.id%></small>
+                    <br>
+                    <strong>Cantidad:</strong>
+                    <small><%= invoice.get_quantity_invoice %></small>
+                    <br>
+                    <strong>Workorder:</strong>
+                    <small><%= invoice.get_work_order_invoice %></small>
+                  </div>
+                  <div class="col-lg-7 text-right">
+                    <strong>No Factura:</strong>
+                    <small><%= invoice.get_idcontable_invoice %></small>
+                    <br>
+                    <strong>Vencimiento:</strong>
+                    <small><%= invoice.get_expiration_date_invoice %></small>
+                    <br>
+                    <strong>Elaboración:</strong>
+                    <small><%= invoice.get_elaboration_date_invoice %></small>
+                    <br>
+                    <strong>Radicación:</strong>
+                    <small><%= invoice.get_eradicate_date_invoice %></small>
+                  </div>
+                </div>
+              </div>
+              <div class="panel-body">
+
+                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                  <thead>
+                  <tr>
+                    <th>Contenedor</th>
+                    <th>Desc</th>
+                    <th>Orig-Dest</th>
+                    <th>Total</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <% invoice.concepts.each do |inv| %>
+                      <tr>
+                        <td><%= inv.get_container %></td>
+                        <td><%= inv.get_description %></td>
+                        <td><%= inv.get_route %></td>
+                        <td><%= inv.get_total_invoice %></td>
+                      </tr>
+                  <% end %>
+                  </tbody>
+                </table>
+
+
+              </div>
+              <div class="panel-footer">
+                <strong>SubTotal:</strong>
+                <small><%= number_to_currency(invoice.subtotal) %></small>
+                <br>
+                <strong>iva:</strong>
+                <small><%= number_to_currency(invoice.iva) %></small>
+                <br>
+                <strong>retefuente:</strong>
+                <small><%= number_to_currency(invoice.retefuente) %></small>
+                <br>
+                <strong>reteica:</strong>
+                <small><%= number_to_currency(invoice.reteica) %></small>
+                <br>
+                <strong>Total:</strong>
+                <small><%= number_to_currency(invoice.total) %></small>
+                <br>
+                <% if pagar %>
+                    <%= link_to 'Pagar', edit_invoice_path(invoice) %>
+                <% else %>
+                    <%= link_to 'Editar', edit_invoice_path(invoice) %> | <%= link_to 'Show', invoice %>
+                <% end %>
+
+              </div>
+            </div>
+          </div>

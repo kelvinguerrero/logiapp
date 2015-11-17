@@ -1,0 +1,33 @@
+<%= form_for(@client_tax) do |f| %>
+
+  <% if @client_tax.errors.any? %>
+      <div class="panel panel-danger">
+        <div class="panel-heading">
+          <%= pluralize(@client_tax.errors.count, "error") %> prohibe que esta entrada de impuestos a cliente:
+        </div>
+        <div class="panel-body">
+          <ul>
+            <% @client_tax.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :iva %><br>
+    <%= f.check_box :iva %>
+  </div>
+  <div class="field">
+    <%= f.label :reteica %><br>
+    <%= f.check_box :reteica %>
+  </div>
+  <div class="field">
+    <%= f.label :retefuente %><br>
+    <%= f.check_box :retefuente %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

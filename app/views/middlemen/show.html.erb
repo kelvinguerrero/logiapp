@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nombre:</strong>
+  <%= @middleman.get_name_middleman %>
+</p>
+
+<p>
+  <strong>Costo:</strong>
+  <%= number_to_currency @middleman.get_price_middleman_entero %>
+</p>
+
+<%= link_to 'Editar', edit_middleman_path(@middleman) %> |
+<%= link_to 'Atrás', middlemen_path %>

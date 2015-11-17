@@ -1,0 +1,140 @@
+<%= form_for(@dispatch) do |f| %>
+  <% if @dispatch.errors.any? %>
+        <div class="panel panel-danger">
+          <div class="panel-heading">
+            <%= pluralize(@dispatch.errors.count, "error") %> prohibe que este despacho sea creado:
+          </div>
+          <div class="panel-body">
+            <ul>
+              <% @dispatch.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+  <% end %>
+
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          Despacho
+        </div>
+        <div class="panel-body">
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <%= f.label 'Shipment' %><br>
+                  <% if params[:p_assignation_id] %>
+                      <%= f.collection_select :assignation_id, Assignation.order(:shipment), :id, :shipment,  {:prompt => 'Seleccione el shipment de una asignación',:selected => params[:p_assignation_id].to_i}, {:class=>'form-control'}%>
+                  <%else%>
+                      <%= f.collection_select :assignation_id, Assignation.order(:shipment), :id, :shipment,  {:prompt => 'Seleccione el shipment de una asignación'}, :class=>'form-control' %>
+                  <%end%>
+                </div>
+
+                <div class="form-group">
+                  <%= f.label 'Intermediario' %><br>
+                  <%= f.collection_select :middleman_id, Middleman.order(:name), :id, :name,  {:prompt => 'Seleccione al comisionista'}, :class => 'form-control' %>
+                </div>
+
+                <div class="form-group">
+                  <%= f.label 'Conductor' %><br>
+                  <!--< %= f.collection_select :driver_id, Driver.where(blacklist: false).order(:name), :id, :name,  {:prompt => 'Seleccione al conductor'}, {:class => 'form-control', :id=>:car} %>-->
+                  <%= f.select(:driver_id, options_from_collection_for_select_with_attributes(Driver.all().where(:busy => false).order(:name), 'id', 'name', 'id-car', 'get_car_id_driver'),  {prompt: 'Seleccione un conductor'},{ :class => 'form-control' }) %>
+                  <%= link_to 'Crear Conductor', new_driver_path, :target => "_blank" %>
+                </div>
+
+                <div class="form-group">
+                  <%= f.label 'Placa del carro' %><br>
+                  <%= f.collection_select :car_id, Car.order(:plate), :id, :plate,  {:prompt => 'Seleccione el carro'}, :class => 'form-control' %>
+                </div>
+
+                <div class="form-group">
+                  <%= f.label 'Orden de cargue' %><br>
+                  <%= f.text_field :loadOrder, :class => 'form-control' %>
+                </div>
+
+                <div class="form-group">
+                  <%= f.label 'Numero del contenedor' %><br>
+                  <%= f.text_field :containerNumber, :class => 'form-control'  %>
+                </div>
+
+                <div class="form-group">
+                  <%= f.label 'Manifiesto' %><br>
+                  <%= f.text_field :manifestNumber, :class => 'form-control' %>
+                </div>
+
+                <div class="form-group">
+                  <%= f.label 'Anticipo' %><br>
+                  <%= f.text_field :advance,data: {autonumeric: {aSign: '$', mDec: 2}}, :class => 'form-control' %>
+                </div>
+
+                <div class="form-group">
+                  <%= f.label 'Saldo' %><br>
+                  <%= f.text_field :balance, data: {autonumeric: {aSign: '$', mDec: 2}}, :class => 'form-control' %>
+                </div>
+
+              </div>
+
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <%= f.label 'Fecha de cargue' %><br>
+                  <%= f.date_field :deliverDate, min:  @dispatch.deliverDate ? nil : Date.today , :class => 'form-control' %>
+                </div>
+
+                <div class="form-group">
+                  <%= f.label 'Fecha de descargue' %><br>
+                  <%= f.date_field :downloadDate, min: @dispatch.downloadDate ? nil : Date.today, :class => 'form-control' %>
+                </div>
+
+                <div class="form-group">
+                  <%= f.label 'Fecha de anticipo' %><br>
+                  <%= f.date_field :advanceDate, min: @dispatch.advanceDate ? nil : Date.today, :class => 'form-control' %>
+                </div>
+
+                <div class="form-group">
+                  <%= f.label 'Fecha de saldo' %><br>
+                  <%= f.date_field :paymentBalanceDate, :class => 'form-control', min: Date.today  %>
+                </div>
+
+                <div class="form-group">
+                  <%= f.label 'Fecha de cumplido' %><br>
+                  <%= f.date_field :completeDate, :class => 'form-control', min: Date.today - 10  %>
+                </div>
+
+                <div class="form-group">
+                  <%= f.label 'Pagar cumplido' %><br>
+                  <%= f.check_box :balancePay, :class => 'checkbox' %>
+                </div>
+
+                <div class="form-group">
+                  <%= f.label 'Concepto de cargue' %><br>
+                  <%= f.text_area :loadConcept, :class => 'form-control'  %>
+                </div>
+
+                <div class="form-group">
+                  <%= f.label 'Vacio' %><br>
+                  <%= f.check_box :unoccupied, :class => 'checkbox' %>
+                </div>
+
+              </div>
+
+            </div>
+        </div>
+        <div class="panel-footer">
+          <%= f.submit params[:action]=='edit' ? 'Editar despacho': 'Crear despacho', :class => 'btn btn-primary btn-sm' %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+    document.getElementById("dispatch_car_id").selectedIndex=$("#dispatch_driver_id").children(":selected").attr("id-car");
+    $(document).ready(function () {
+        $("#dispatch_driver_id").click(function () {
+            var id_seleccionado_carro = $(this).children(":selected").attr("id-car");
+            document.getElementById("dispatch_car_id").selectedIndex=id_seleccionado_carro;
+        });
+    });
+</script>

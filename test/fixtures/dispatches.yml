@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  manifestNumber: 
+  loadOrder: 
+  advance: 9.99
+  balance: 9.99
+
+two:
+  manifestNumber: 
+  loadOrder: 
+  advance: 9.99
+  balance: 9.99

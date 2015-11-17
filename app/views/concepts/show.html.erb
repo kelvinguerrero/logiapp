@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Container:</strong>
+  <%= @concept.get_container %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @concept.get_description %>
+</p>
+
+<p>
+  <strong>Route:</strong>
+  <%= @concept.get_route %>
+</p>
+
+<%= link_to 'Editar', edit_concept_path(@concept) %> |
+<%= link_to 'Atrás', concepts_path %>

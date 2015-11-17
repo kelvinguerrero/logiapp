@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Value:</strong>
+  <%= @outflow.get_value_navy_number_outflow %>
+</p>
+
+<p>
+  <strong>Flowdate:</strong>
+  <%= @outflow.get_flow_date_outflow %>
+</p>
+
+<p>
+  <strong>Concept:</strong>
+  <%= @outflow.get_concept_outflow %>
+</p>
+
+<%= link_to 'Editar', edit_outflow_path(@outflow) %> |
+<%= link_to 'Atrás', outflows_path %>

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  total: 9.99
+  quantity: 1
+  expirationDate: 2015-09-14
+  elaborationDate: 2015-09-14
+  eradicateDate: 2015-09-14
+
+two:
+  total: 9.99
+  quantity: 1
+  expirationDate: 2015-09-14
+  elaborationDate: 2015-09-14
+  eradicateDate: 2015-09-14
