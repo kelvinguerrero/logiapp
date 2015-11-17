@@ -84,6 +84,6 @@ test:
 #
 production:
   <<: *default
-  database: logiapp_production
-  username: logiapp
+  database: ddoavno26bphp2
+  username: miomxlirooljjn
   password: <%= ENV['LOGIAPP_DATABASE_PASSWORD'] %>
