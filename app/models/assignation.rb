@@ -1,5 +1,5 @@
 class Assignation < ActiveRecord::Base
-  validates_numericality_of :price, greater_than: 239000, :message => "El precio tiene que ser mayor a $239.000"
+  validates_numericality_of :price, greater_than: 224999, :message => "El precio tiene que ser mayor a $239.000"
 
   validates_presence_of :shipment, :message => "Tiene que ingresar un shipment"
   validates_presence_of :quantity, :message => "Tiene que ingresar una cantidad"

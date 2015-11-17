@@ -76,19 +76,19 @@ class Accountancy
     contenedores.each do |key,value|
       p_dispatch = Dispatch.find_by(:id => key)
       tipo_contenedor = p_dispatch.assignation.container.name
-
+      price = p_dispatch.assignation.price
       if '20 HQ' == tipo_contenedor || '20 standar' == tipo_contenedor
         v_concepto = Concept.create(:container => value['contenedor'],
                                     :description=> value['descripcion'],
                                     :route=> value['origenDestino'],
-                                    :total=>@val_contenedor_20,
+                                    :total=>price,
                                     :invoice=>p_invoice)
         v_concepto.save
       else
         v_concepto = Concept.create(:container => value['contenedor'],
                                     :description=> value['descripcion'],
                                     :route=> value['origenDestino'],
-                                    :total=>@val_contenedor_40,
+                                    :total=>price,
                                     :invoice=>p_invoice)
         v_concepto.save
       end
