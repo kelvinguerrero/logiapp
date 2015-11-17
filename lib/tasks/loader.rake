@@ -4,7 +4,7 @@ namespace :loader do
   task load_base: :environment do
     p "Inicio Cargue de la base"
     Rake::Task['loader:load_parametros'].invoke
-    Rake::Task['load_client_taxes'].invoke
+    Rake::Task['loader:load_client_taxes'].invoke
     Rake::Task['loader:load_type'].invoke
   end
 
