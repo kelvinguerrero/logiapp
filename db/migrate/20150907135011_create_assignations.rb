@@ -13,6 +13,5 @@ class CreateAssignations < ActiveRecord::Migration
       t.belongs_to :way, index:true
       t.timestamps
     end
-    add_index :assignations, :workOrder, unique: true
   end
 end

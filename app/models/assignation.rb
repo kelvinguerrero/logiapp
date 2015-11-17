@@ -10,7 +10,7 @@ class Assignation < ActiveRecord::Base
   validates_presence_of :way_id, :message => "Tiene que ingresar una ruta"
 
   validates :shipment, uniqueness: { message: "Ya existe el shipment" }
-  validates :workOrder, uniqueness: { message: "Ya existe work order" },:allow_nil => true
+  validates :workOrder, uniqueness: { message: "Ya existe work order" },:allow_nil => true, :allow_blank => true
   validates_numericality_of :quantity, :greater_than => 0
 
 
