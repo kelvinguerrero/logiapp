@@ -21,6 +21,10 @@ class Assignation < ActiveRecord::Base
   has_many :dispatches, inverse_of: :assignation
   has_many :invoices, inverse_of: :assignation
 
+  def get_shipment_container
+    get_shipment + ", " + get_container_name
+  end
+
   def get_way_name
     way ? way.name : 'N/A'
   end

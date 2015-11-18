@@ -26,9 +26,9 @@
                 <div class="form-group">
                   <%= f.label 'Shipment' %><br>
                   <% if params[:p_assignation_id] %>
-                      <%= f.collection_select :assignation_id, Assignation.order(:shipment), :id, :shipment,  {:prompt => 'Seleccione el shipment de una asignación',:selected => params[:p_assignation_id].to_i}, {:class=>'form-control'}%>
+                      <%= f.collection_select :assignation_id, Assignation.order(:shipment), :id, :get_shipment_container,  {:prompt => 'Seleccione el shipment de una asignación',:selected => params[:p_assignation_id].to_i}, {:class=>'form-control'}%>
                   <%else%>
-                      <%= f.collection_select :assignation_id, Assignation.order(:shipment), :id, :shipment,  {:prompt => 'Seleccione el shipment de una asignación'}, :class=>'form-control' %>
+                      <%= f.collection_select :assignation_id, Assignation.order(:shipment), :id, :get_shipment_container,  {:prompt => 'Seleccione el shipment de una asignación'}, :class=>'form-control' %>
                   <%end%>
                 </div>
 
