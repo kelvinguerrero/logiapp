@@ -24,27 +24,27 @@
             <div class="row">
               <div class="col-lg-6">
                 <div class="form-group">
-                    <%= f.label :name %><br>
+                    <%= f.label 'Nombre' %><br>
                     <%= f.text_field :name, :class => 'form-control' %>
                 </div>
                 <div class="form-group">
-                    <%= f.label :lastName %><br>
+                    <%= f.label 'Apellido' %><br>
                     <%= f.text_field :lastName, :class => 'form-control' %>
                 </div>
                 <div class="form-group">
-                    <%= f.label :document %><br>
+                    <%= f.label 'Documento' %><br>
                     <%= f.text_field :document, :class => 'form-control' %>
                 </div>
                 <div class="form-group">
-                    <%= f.label :cellPhone %><br>
+                    <%= f.label 'Celular'%><br>
                     <%= f.number_field :cellPhone, :class => 'form-control' %>
                 </div>
                 <div class="form-group">
-                    <%= f.label :cars %><br>
+                    <%= f.label 'Carros' %><br>
                     <%= collection_select(:car, :id, Car.order(:plate), :id, :get_plate_car, {:selected => @driver.get_car_id_driver}, {:prompt => 'Seleccione la placa del carro', :class => 'form-control'}) %>
                 </div>
                 <div class="form-group">
-                      <%= f.label :blacklist %><br>
+                      <%= f.label 'Lista Negra' %><br>
                       <%= f.check_box :blacklist, :class => 'checkbox' %>
                 </div>
                 <div class="form-group">
