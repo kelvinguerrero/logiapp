@@ -3,7 +3,14 @@
   <div class="col-lg-12">
     <div class="panel panel-default">
       <div class="panel-heading">
-        Conductores
+        <div class="row">
+          <div class="col-lg-4">
+            Tabla de Conductores
+          </div>
+          <div class="col-lg-8 text-right">
+            <%= link_to 'Nuevo conductor', new_driver_path %>
+          </div>
+        </div>
       </div>
       <div class="panel-body">
         <div class="dataTable_wrapper">
@@ -39,6 +46,3 @@
     </div>
   </div>
 </div>
-<br>
-
-<%= link_to 'New Driver', new_driver_path %>
