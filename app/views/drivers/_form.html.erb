@@ -41,7 +41,7 @@
                 </div>
                 <div class="form-group">
                     <%= f.label 'Carros' %><br>
-                    <%= collection_select(:car, :id, Car.order(:plate), :id, :get_plate_car, {:selected => @driver.get_car_id_driver}, {:prompt => 'Seleccione la placa del carro', :class => 'form-control'}) %>
+                    <%= collection_select(:car, :id, Car.order(:plate).where(:driver => nil), :id, :get_plate_car, {:selected => @driver.get_car_id_driver_form, :include_blank => "Seleccione la placa del carro"}, {:class => 'form-control', :required=>true}) %>
                 </div>
                 <div class="form-group">
                       <%= f.label 'Lista Negra' %><br>

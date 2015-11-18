@@ -3,7 +3,7 @@ class Driver < ActiveRecord::Base
   validates :name, format: { with: /\A[a-zA-Z’ ñÑ']+\z/ , message: "El nombre no puede contener caracteres especiales"}
   validates :lastName, format: { with: /\A[a-zA-Z’ ñÑ']+\z/ , message: "El apellido no puede contener caracteres especiales"}
   validates_length_of :cellPhone, :maximum => 10, :message => "El tamaño de caracteres del año es incorrecto (debe ser de 10 digitos sin espacios)"
-
+  #validates_presence_of :car, :message => "Tiene que seleccionar la placa del carro al conductor."
   validates_presence_of :name, :message => "Tiene que ingresar un nombre para el conductor."
   validates_presence_of :lastName, :message => "Tiene que ingresar un apellido para el conductor."
   validates_presence_of :document, :message => "Tiene que ingresar el documento del conductor."
@@ -66,6 +66,14 @@ class Driver < ActiveRecord::Base
   end
 
   #------------------------------------------
+  # Dar el id del carro del conductor
+  # en caso contrario retorna Nil
+  #------------------------------------------
+  def get_car_id_driver_form
+    car ? car.id : nil
+  end
+
+  #------------------------------------------
   # Dar el black list, para saber si el
   # conductor esta o no el el black list
   #------------------------------------------
@@ -81,4 +89,7 @@ class Driver < ActiveRecord::Base
     blacklistComment ? blacklistComment : 'N/A'
   end
 
+  def add_error_car
+    errors.add(:car, ": No se puede registrar el carro, pues no ya esta asociado con a otro conductor.")
+  end
 end

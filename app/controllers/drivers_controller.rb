@@ -25,15 +25,23 @@ class DriversController < ApplicationController
   # POST /drivers.json
   def create
     @driver = Driver.new(driver_params)
-    car = Car.find_by(driver_car_params)
-    @driver.car = car
+    valid_car=false
+    if not(driver_car_params[:id].empty? )
+      var_driver_logic = DriverLogic.new(driver_car_params)
+      valid_car=var_driver_logic.validate_car_has_driver(@driver,driver_car_params)
+    end
     respond_to do |format|
-      if @driver.save
-        format.html { redirect_to @driver, notice: 'Driver was successfully created.' }
-        format.json { render :show, status: :created, location: @driver }
+      if valid_car
+        if @driver.save
+          format.html { redirect_to @driver, notice: 'Driver was successfully created.' }
+          format.json { render :show, status: :created, location: @driver }
+        else
+          format.html { render :new }
+          format.json { render json: @driver.errors, status: :unprocessable_entity }
+        end
       else
-        format.html { render :new }
-        format.json { render json: @driver.errors, status: :unprocessable_entity }
+          format.html { render :new }
+          format.json { render json: @driver.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -78,6 +86,6 @@ class DriversController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def driver_car_params
-      params.require(:car).permit(:car_id)
+      params.require(:car).permit(:id)
     end
 end
