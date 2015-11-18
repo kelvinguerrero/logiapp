@@ -3,7 +3,7 @@ class Driver < ActiveRecord::Base
   validates :name, format: { with: /\A[a-zA-Z’ ñÑ']+\z/ , message: "El nombre no puede contener caracteres especiales"}
   validates :lastName, format: { with: /\A[a-zA-Z’ ñÑ']+\z/ , message: "El apellido no puede contener caracteres especiales"}
   validates_length_of :cellPhone, :maximum => 10, :message => "El tamaño de caracteres del año es incorrecto (debe ser de 10 digitos sin espacios)"
-  #validates_presence_of :car, :message => "Tiene que seleccionar la placa del carro al conductor."
+  validates_presence_of :car, :message => "Tiene que seleccionar la placa del carro al conductor."
   validates_presence_of :name, :message => "Tiene que ingresar un nombre para el conductor."
   validates_presence_of :lastName, :message => "Tiene que ingresar un apellido para el conductor."
   validates_presence_of :document, :message => "Tiene que ingresar el documento del conductor."

@@ -3,8 +3,11 @@ class Dispatch < ActiveRecord::Base
   validates_presence_of :assignation_id, :message => "Tiene que ingresar un shipment de una asignacion."
   validates_presence_of :driver_id, :message => "Tiene que ingresar un conductor."
   validates_presence_of :car_id, :message => "Tiene que ingresar un carro."
-  validates_presence_of :deliverDate, :message => "Tiene que la fecha de cargue."
+  validates_presence_of :deliverDate, :message => "Tiene que la fecha de cargue.", if: :loadOrder_not_nulo?
 
+  def loadOrder_not_nulo?
+    not loadOrder.nil?
+  end
 
   validate :validation_dispatch_available_assignation, :validation_dispatch_driver,
            :validation_loadOrder, :validation_containerNumber, :validation_manifestNumber,
@@ -98,7 +101,7 @@ class Dispatch < ActiveRecord::Base
   # la placa del carro, fecha de cargue o concepto de cargue
   #---------------------------------------------------------------------------------------------
   def validation_loadOrder
-    if ( (not driver_id) or (not car_id) or ( not deliverDate) or ( unoccupied ? false : (loadConcept.nil? or (loadConcept.length == 0))))
+    if ( ((not driver_id) or (not car_id) or ( not deliverDate) or ( unoccupied ? false : (loadConcept.nil? or (loadConcept.length == 0)))) and (not loadOrder.nil?))
       errors.add(:loadOrder, ": No se puede generar el numero de orden de cargue sin existir un conductor, la placa del carro, fecha de cargue o concepto de cargue.")
     end
   end
