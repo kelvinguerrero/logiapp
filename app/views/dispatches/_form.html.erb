@@ -79,7 +79,7 @@
               <div class="col-lg-6">
                 <div class="form-group">
                   <%= f.label 'Fecha de cargue' %><br>
-                  <%= f.date_field :deliverDate, min:  @dispatch.deliverDate ? nil : Date.today , :class => 'form-control' %>
+                  <%= f.date_field :deliverDate, min:  @dispatch.deliverDate ? nil : Date.today - 30, :class => 'form-control' %>
                 </div>
 
                 <div class="form-group">
@@ -89,7 +89,7 @@
 
                 <div class="form-group">
                   <%= f.label 'Fecha de anticipo' %><br>
-                  <%= f.date_field :advanceDate, min: @dispatch.advanceDate ? nil : Date.today, :class => 'form-control' %>
+                  <%= f.date_field :advanceDate, min: @dispatch.advanceDate ? nil : Date.today - 30, :class => 'form-control' %>
                 </div>
 
                 <div class="form-group">
