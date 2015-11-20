@@ -1,4 +1,4 @@
-class Accountancy
+class AccountancyLogic
 
   def initialize(params)
     @params = params

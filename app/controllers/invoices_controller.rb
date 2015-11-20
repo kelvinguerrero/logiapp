@@ -23,7 +23,7 @@ class InvoicesController < ApplicationController
     if asignacion.has_containers_number
       if (not params[:workorder_number].empty?) or (params[:workorder_number].to_s.length > 0)
         if asignacion.invoices.empty?
-          account = Accountancy.new(params)
+          account = AccountancyLogic.new(params)
           rta_hash = account.invoice_containers_navy(params[:workorder_number])
           if rta_hash["rta"] != false
             @lits_invoices = asignacion.invoices

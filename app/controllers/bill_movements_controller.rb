@@ -1,5 +1,6 @@
 class BillMovementsController < ApplicationController
   before_action :set_bill_movement, only: [:show, :edit, :update, :destroy]
+  before_action :set_logi_bill_movement_transaction, only: [:bill_transaction]
 
   # GET /bill_movements
   # GET /bill_movements.json
@@ -16,6 +17,16 @@ class BillMovementsController < ApplicationController
   def new
     @bill_movement = BillMovement.new
   end
+
+  # GET /:id_bill/new_bill_movement
+  def bill_transaction
+    var_bill = BillMovementLogic.new
+    var_bill.movement_enter_logi_bill(bill_transaction_params[:bill_movement_id], bill_transaction_params[:value_bill])
+    respond_to do |format|
+      redirect_to @logi_bill and return
+    end
+  end
+
 
   # GET /bill_movements/1/edit
   def edit
@@ -67,8 +78,20 @@ class BillMovementsController < ApplicationController
       @bill_movement = BillMovement.find(params[:id])
     end
 
+  # Use callbacks to share common setup or constraints between actions.
+  def set_logi_bill_movement_transaction
+    @logi_bill = LogiBill.find(params[:bill_movement_id])
+  end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def bill_movement_params
       params.require(:bill_movement).permit(:total, :value, :lastChange)
+      params.permit(:value_bill,:bill_movement_id)
+    end
+
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def bill_transaction_params
+      params.permit(:value_bill,:bill_movement_id)
     end
 end
+

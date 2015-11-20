@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
 
-  resources :bill_movements
+  resources :bill_movements do
+    get 'bill_transaction/:value_bill', :action => 'bill_transaction', :as => 'transaction'
+
+  end
 
   resources :type_movements
 

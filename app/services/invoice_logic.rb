@@ -9,7 +9,7 @@ class InvoiceLogic
   end
 
   def pay_invoice(logibill_id)
-    v_service_movement = MovementLogic.new(nil,nil)
+    v_service_movement = BillMovementLogic.new
     v_service_movement.movement_enter_logi_bill(logibill_id, @p_invoice.total)
     @p_invoice.paid=true
     @p_invoice.save
