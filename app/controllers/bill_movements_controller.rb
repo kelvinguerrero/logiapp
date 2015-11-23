@@ -23,7 +23,7 @@ class BillMovementsController < ApplicationController
     var_bill = BillMovementLogic.new
     var_bill.movement_enter_logi_bill(bill_transaction_params[:bill_movement_id], bill_transaction_params[:value_bill])
     respond_to do |format|
-      redirect_to @logi_bill and return
+      format.html{ redirect_to @logi_bill and return }
     end
   end
 
