@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151104172603) do
+ActiveRecord::Schema.define(version: 20151124205356) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 20151104172603) do
     t.decimal  "value",            precision: 13, scale: 2
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "concept"
   end
 
   add_index "bill_movements", ["bill_movement_id"], name: "index_bill_movements_on_bill_movement_id", using: :btree

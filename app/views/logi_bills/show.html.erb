@@ -31,6 +31,7 @@
             <tr>
               <th><small>No</small></th>
               <th><small>Último</small></th>
+              <th><small>Concepto</small></th>
               <th><small>Movimiento anterior</small></th>
               <th><small>valor</small></th>
               <th><small>Total</small></th>
@@ -43,6 +44,7 @@
                 <tr>
                   <td><small><%= movement.id%></small></td>
                   <td><small><%= movement.get_last_change%></small></td>
+                  <td><small><%= movement.concept%></small></td>
                   <td><small><%= movement.previous_bill_movement_id %></small></td>
                   <td><small><%= number_to_currency movement.value %></small></td>
                   <td><small><%= number_to_currency movement.total %></small></td>

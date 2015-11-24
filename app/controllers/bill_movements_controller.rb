@@ -85,8 +85,7 @@ class BillMovementsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def bill_movement_params
-      params.require(:bill_movement).permit(:total, :value, :lastChange)
-      params.permit(:value_bill,:bill_movement_id)
+      params.require(:bill_movement).permit(:total, :value, :lastChange,:concept)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

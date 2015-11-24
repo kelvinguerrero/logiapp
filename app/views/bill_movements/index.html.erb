@@ -26,6 +26,7 @@
                 <tr>
                   <th>id</th>
                   <th>id anterior</th>
+                  <th>Concepto</th>
                   <th>Logi bill</th>
                   <th>Total</th>
                   <th>Value</th>
@@ -39,6 +40,7 @@
                   <tr>
                     <td><%= bill_movement.id %></td>
                     <td><%= bill_movement.previous_bill_movement_id %></td>
+                    <td><%= bill_movement.concept%></td>
                     <td><%= bill_movement.logi_bill_name_bill %></td>
                     <td><%= bill_movement.total_bill_movement %></td>
                     <td><%= bill_movement.value_bill_movement %></td>
