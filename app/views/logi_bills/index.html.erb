@@ -29,7 +29,7 @@
                   <tr>
                     <td><%= logi_bill.name %></td>
                     <td><%= logi_bill.endNumber %></td>
-                    <td><%= logi_bill.get_total_bill %></td>
+                    <td><%= number_to_currency(logi_bill.get_total_bill) %></td>
                     <td><%= link_to 'Show', logi_bill %></td>
                     <td><%= link_to 'Edit', edit_logi_bill_path(logi_bill) %></td>
                     <td><%= link_to 'Destroy', logi_bill, method: :delete, data: { confirm: 'Are you sure?' } %></td>
