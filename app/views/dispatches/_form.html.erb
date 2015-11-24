@@ -84,7 +84,7 @@
 
                 <div class="form-group">
                   <%= f.label 'Fecha de descargue' %><br>
-                  <%= f.date_field :downloadDate, min: @dispatch.downloadDate ? nil : Date.today, :class => 'form-control' %>
+                  <%= f.date_field :downloadDate, min: @dispatch.downloadDate ? nil : Date.today - 30, :class => 'form-control' %>
                 </div>
 
                 <div class="form-group">
