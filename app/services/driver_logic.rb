@@ -15,7 +15,15 @@ class DriverLogic
     end
   end
 
-  def change_status_driver(id_driver,status)
+  def validate_status_driver(id_driver)
+    driver = Driver.find_by(:id=>id_driver)
+    contador = 0
+    driver.dispatches.each do|dispatch|
+      if dispatch.assignation.container.name
 
+      end
+    end
+    driver.busy = true
+    driver.save
   end
 end

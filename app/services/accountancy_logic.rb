@@ -2,11 +2,8 @@ class AccountancyLogic
 
   def initialize(params)
     @params = params
-    @val_contenedor_20 = Parameter.find_by_name('contenedor_20').value.to_f
-    @val_contenedor_40 = Parameter.find_by_name('contenedor_40').value.to_f
     @id_assignation = @params[:p_assignation_id]
     @asignacion = Assignation.find_by(:id=>@id_assignation)
-
   end
 
   def invoice_containers_navy(p_work_order)

@@ -18,9 +18,8 @@ class DispatchLogic
 
   def create_dispatch_logic
     if ((not @params[:driver_id].nil?) and @params[:driver_id].to_s.length > 0)
-        driver = Driver.find_by(:id=>@params[:driver_id])
-        driver.busy = true
-        driver.save
+      var_driver_logic = DriverLogic.new(@params)
+      var_driver_logic.validate_status_driver(@params[:driver_id])
     else
       @dispatch.errors.add(:driver, ": Error, no se le generar el despacho pues no existe conductor")
       raise StandardError.new("Error en la generacion de el despacho")

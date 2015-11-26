@@ -50,32 +50,39 @@ namespace :loader do
     attributes6 = {'name' => 'max_contenedores_factura', 'value' => '20'}
     Parameter.create(attributes6)
 
-    attributes7 = {'name' => 'contenedor_20', 'value' => '240000'}
+    attributes6A = {'name' => 'name_cont_20_st', 'value' => '20ST'}
+    Parameter.create(attributes6A)
+
+    attributes7 = {'name' => 'name_cont_40_hq', 'value' => '40HQ'}
     Parameter.create(attributes7)
 
-    attributes8 = {'name' => 'contenedor_40', 'value' => '480000'}
+    attributes8 = {'name' => 'name_cont_40_st', 'value' => '40ST'}
     Parameter.create(attributes8)
 
-    attributes9 = {'name' => 'IVA', 'value' => '0.16'}
+    attributes9 = {'name' => 'max_contenedores_factura', 'value' => '20'}
     Parameter.create(attributes9)
 
-    attributes10 = {'name' => 'Reteica', 'value' => '0.00966'}
+
+    attributes10 = {'name' => 'IVA', 'value' => '0.16'}
     Parameter.create(attributes10)
 
-    attributes11 = {'name' => 'Retefuente', 'value' => '0.04'}
+    attributes11 = {'name' => 'Reteica', 'value' => '0.00966'}
     Parameter.create(attributes11)
 
-    attributes12 = {'name' => 'sale_advance', 'value' => '0'}
+    attributes12 = {'name' => 'Retefuente', 'value' => '0.04'}
     Parameter.create(attributes12)
 
-    attributes13 = {'name' => 'sale_balance', 'value' => '1'}
+    attributes13 = {'name' => 'sale_advance', 'value' => '0'}
     Parameter.create(attributes13)
 
-    attributes14 = {'name' => 'sale_advance_correction', 'value' => '2'}
+    attributes14 = {'name' => 'sale_balance', 'value' => '1'}
     Parameter.create(attributes14)
 
-    attributes15 = {'name' => 'sale_balance_correction', 'value' => '3'}
+    attributes15 = {'name' => 'sale_advance_correction', 'value' => '2'}
     Parameter.create(attributes15)
+
+    attributes16 = {'name' => 'sale_balance_correction', 'value' => '3'}
+    Parameter.create(attributes16)
   end
 
 
